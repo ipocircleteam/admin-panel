@@ -1,10 +1,5 @@
-import React from 'react'
-import Header from '../components/header/header'
+import React from "react";
 
 export default function DataEntry() {
-    return (
-        <>
-            <Header />
-        </>
-    )
+  return <>Data Entry</>;
 }
