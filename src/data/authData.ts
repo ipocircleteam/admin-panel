@@ -1,4 +1,6 @@
-export const users = [
+import { UserAuthData } from "./data.types";
+
+export const users: UserAuthData[] = [
     {
         email: "dataentry@ipocircle",
         password: "data@1234",

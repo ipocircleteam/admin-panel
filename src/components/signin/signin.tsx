@@ -1,30 +1,34 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import { users } from "../../data/authData";
+import { signin } from "../../reducers/user-reducer";
 
 export default function Signin() {
+  const dispatch = useDispatch();
+
   const [form, setFormData] = React.useState({
     email: "",
     password: "",
   });
-    
-    const [message, setMessage] = React.useState("")
 
-    const submitForm = async () => {
-        const user = await users.find(function (user) {
-          return user.email === form.email
-        })
-        if (user === undefined || user.password !== form.password) {
-            setMessage("Invalid credentials")
-            return
-        }
+  const [message, setMessage] = React.useState("");
 
-        alert("Success")
-        // dispatch signed in user role and then dispatch view change
+  const submitForm = () => {
+    const user = users.find(function (user) {
+      return user.email === form.email;
+    });
+    if (user === undefined || user.password !== form.password) {
+      setMessage("Invalid credentials");
+      return;
+    }
+      
+    dispatch(signin({ email: user.email, role: user.role }));
   };
 
   return (
-      <div id="" className=" w-[15vw] h-[auto] my-2 flex flex-col items-center">
-          <label className="text-[red]">{message}</label>
+    <div id="" className=" w-[15vw] h-[auto] my-2 flex flex-col items-center">
+      <label className="text-[red]">{message}</label>
+
       <input
         type="email"
         placeholder="username"
