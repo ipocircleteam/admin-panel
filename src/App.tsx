@@ -3,6 +3,8 @@ import { useSelector } from 'react-redux';
 import './globals.css';
 import Loader from './components/Loader/loader';
 import { UserReducerType } from './types';
+import DataEntry from './views/data-entry';
+import Admin from './views/admin';
 
 function App() {
   const view = useSelector((state: UserReducerType) => state.user.view)
@@ -10,8 +12,8 @@ function App() {
   return (
     <div className="App">
       {view === "auth" && <Loader />}
-      {view === "datafeed" && "DATA FEED HU MAI"}
-      {view === "admin" && "ADMIN HU MAIN"}
+      {view === "DATA ENTRY" && <DataEntry />}
+      {view === "ADMIN" && <Admin />}
     </div>
   );
 }

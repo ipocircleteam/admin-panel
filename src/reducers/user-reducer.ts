@@ -13,6 +13,7 @@ const userReducer = createSlice({
     reducers: {
         signin(state, action) {
             const newView = getView(action.payload.role)
+            
             return {
                 email: action.payload.email,
                 role: action.payload.role,
@@ -20,7 +21,11 @@ const userReducer = createSlice({
             }
         },
         signout(state, action) {
-            
+            return {
+                email: "",
+                role: "",
+                view:"auth"
+            }
         }
     }
 })
