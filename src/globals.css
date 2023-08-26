@@ -15,3 +15,57 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.custom-spin{
+  animation: rotate 1s ease forwards;
+}
+
+@keyframes rotate {
+  from{
+    transform: rotate(0deg);
+  }to{
+    transform: rotate(359deg);
+  }
+}
+
+.custom-width{
+  width: 0px;
+  animation: slipin 0.5s ease 1s forwards;
+}
+
+@keyframes slipin {
+  from{
+    width: 0px;
+  }to{
+    width: 130px;
+  }
+}
+
+.custom-moveup{
+  transform: translateY(0px);
+  animation: moveup 0.5s ease 1.5s forwards;
+}
+
+@keyframes moveup {
+  from{
+    transform: translateY(0px);
+  }to{
+    transform: translateY(-100px);
+  }
+}
+
+.custom-appear{
+  opacity: 0;
+  transform: translateY(0px);
+  animation: appear 0.5s ease 1.5s forwards;
+}
+
+@keyframes appear {
+  from{
+  opacity: 0;
+  transform: translateY(0px);
+  }to{
+    opacity: 1;
+  transform: translateY(-100px);
+  }
+}

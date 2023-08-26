@@ -1,10 +1,11 @@
 import React from 'react';
 import './globals.css';
+import Loader from './components/Loader/loader';
 
 function App() {
   return (
     <div className="App">
-      <h1 className='text-primary text-center text-[2rem] font-bold m-2'>Dashboard</h1>
+      <Loader />
     </div>
   );
 }
