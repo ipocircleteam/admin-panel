@@ -7,7 +7,8 @@ export default function PanelButtons(props: {
   reset: () => void;
 }) {
   return (
-    <div className="h-[10vh] bg-primary md:rounded-t-lg flex justify-center items-center">
+    <div className="h-[10vh] fixed bottom-0 bg-primary md:rounded-t-lg flex justify-center 
+    items-center w-[60%]">
       <button
         id="review"
         className="bg-white w-[100px] p-2 rounded-lg mx-2"

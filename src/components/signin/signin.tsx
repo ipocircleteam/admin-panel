@@ -32,7 +32,7 @@ export default function Signin() {
       <input
         type="email"
         placeholder="username"
-        className="text-primary border-b-2 border-b-primary outline-none my-2"
+        className="text-primary text-[1.5rem] border-b-2 border-b-primary outline-none my-2 bg-transparent"
         value={form.email}
         onChange={(e) => {
           setFormData({
@@ -45,7 +45,7 @@ export default function Signin() {
       <input
         type="password"
         placeholder="password"
-        className="text-primary border-b-2 border-b-primary outline-none my-2"
+        className="text-primary text-[1.5rem] border-b-2 border-b-primary outline-none my-2 bg-transparent"
         value={form.password}
         onChange={(e) => {
           setFormData({
@@ -57,7 +57,8 @@ export default function Signin() {
 
       <button
         onClick={submitForm}
-        className="text-primary text-[1.2rem] px-1 font-semibold hover:text-secondary border rounded-lg my-2"
+        className="text-primary text-[1.5rem] mt-3 w-[140px] px-1 font-semibold
+         hover:text-secondary border border-primary rounded-md my-2"
       >
         Signin
       </button>

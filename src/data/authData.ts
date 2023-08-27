@@ -2,7 +2,7 @@ import { UserAuthData } from "./data.types";
 
 export const users: UserAuthData[] = [
     {
-        email: "dataentry@ipocircle",
+        email: "data@ipocircle",
         password: "data@1234",
         role: "data entry"
     },

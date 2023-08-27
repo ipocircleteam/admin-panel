@@ -1,5 +1,5 @@
 import React from "react";
-import DataEntry from "../../views/data-entry";
+import IpoDetailsTab from "../tab/ipodetails";
 
 export default function Sidebar(props: { function: (comp: any) => void }) {
   return (
@@ -14,7 +14,7 @@ export default function Sidebar(props: { function: (comp: any) => void }) {
       </button>
       <button
         onClick={() => {
-          props.function(<DataEntry />);
+          props.function(<IpoDetailsTab />);
         }}
         className="text-[1.2rem] my-1 outline-none hover:text-primary font-semibold"
       >

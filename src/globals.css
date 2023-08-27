@@ -37,7 +37,7 @@ code {
   from{
     width: 0px;
   }to{
-    width: 130px;
+    width: 170px;
   }
 }
 
@@ -79,4 +79,11 @@ code {
 .custom-scrollbar {
   -ms-overflow-style: none;  /* IE and Edge */
   scrollbar-width: none;  /* Firefox */
+}
+
+
+.custom-bg{
+  background-image: url("./assets//background/IPO\ Circle\ Presentation\ v1.0.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
 }

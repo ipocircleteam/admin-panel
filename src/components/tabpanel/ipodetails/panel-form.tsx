@@ -14,7 +14,8 @@ export default function PanelForm(props: {
   };
 
   return (
-    <div className="h-[77vh] overflow-scroll custom-scrollbar grid grid-cols-1 md:grid-cols-2 gap-2 p-2 border  rounded">
+    <div className="h-[77vh] overflow-scroll custom-scrollbar grid grid-cols-1 
+    md:grid-cols-2 gap-2 p-2 border border-primary rounded">
       <Input
         value={props.data.id}
         function={handleChange}
