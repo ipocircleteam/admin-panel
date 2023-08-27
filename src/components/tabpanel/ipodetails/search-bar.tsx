@@ -1,17 +1,12 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { searchIpo } from "../../../reducers/ipo-reducer";
+import { useSelector } from "react-redux";
 import { IpoReducerType } from "../../../types";
 
-export default function SearchBar() {
+export default function SearchBar(props: {
+  Search: (ipo: string) => void
+}) {
   const [ipo, setIpo] = useState("");
-  const dispatch = useDispatch();
   const message = useSelector((state: IpoReducerType) => state.ipo.message);
-
-  const Search = () => {
-    //   write async logic
-    dispatch(searchIpo({ ipoName: ipo }));
-  };
 
   return (
     <div className="p-3 bg-primary rounded-lg border">
@@ -25,7 +20,7 @@ export default function SearchBar() {
         }}
         className="w-[100%] p-1 outline-none"
       />
-      <button onClick={Search} className="p-1 bg-[#FFFFFF] border-l-2">
+      <button onClick={()=>{props.Search(ipo)}} className="p-1 bg-[#FFFFFF] border-l-2">
         Search
           </button>
       </section>
