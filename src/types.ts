@@ -59,6 +59,9 @@ export type IpoDetailsType = {
 
 export type IpoReducerType = {
     ipo: {
-        currentIPO: IpoDetailsType
+        currentIPO: IpoDetailsType,
+        status: string,
+        message: string,
+        error: boolean
     }
 }
