@@ -9,18 +9,18 @@ export default function Header() {
   const dispatch = useDispatch();
 
   return (
-    <div className="fixed p-4 flex justify-between items-center w-[100vw] h-[50px] overflow-hidden bg-baseTwo border-b-2">
-      <section>
+    <div className="fixed p-4 flex justify-between items-center w-[100vw] h-[50px] overflow-hidden bg-primary border-b-2">
+      <section className="bg-base">
         <img className="h-[40px]" src={LogoIcon} alt="IPO Circle" />
       </section>
 
           <section>
-              <p className="text-primary font-bold text-[1.2rem]">{ view }</p>
+              <p className="text-base font-bold text-[1.2rem]">{ view }</p>
       </section>
 
       <section>
         <button
-          className="mx-2 font-semibold hover:text-secondary"
+          className="mx-2 font-semibold text-base hover:text-secondary"
           onClick={() => {
             dispatch(signout({}));
           }}
