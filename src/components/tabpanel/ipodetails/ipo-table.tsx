@@ -2,7 +2,7 @@ import React from "react";
 import { IpoDetailsType } from "../../../types";
 import Input from "./input-field";
 
-export default function PanelForm(props: {
+export default function IpoTable(props: {
   data: IpoDetailsType;
   callback: (data: IpoDetailsType) => void;
 }) {
@@ -14,8 +14,11 @@ export default function PanelForm(props: {
   };
 
   return (
-    <div className="h-[77vh] overflow-scroll custom-scrollbar grid grid-cols-1 
-    md:grid-cols-2 gap-2 p-2 border border-primary rounded">
+    <div className="overflow-scroll custom-scrollbar grid grid-cols-1 gap-0 border-r-2 
+    w-[100%] h-[80vh] overflow-x-hidden overflow-y-scroll">
+      <label className="text-[1.2rem] bg-gray-200 h-[30px] text-primary px-[10px] border-b-2">
+        IPO Details
+      </label>
       <Input
         value={props.data.id}
         function={handleChange}
@@ -153,6 +156,18 @@ export default function PanelForm(props: {
         function={handleChange}
         text="Anchor Lockinrest"
         name="anchor_lockinrest"
+      />
+      <Input
+        value={props.data.share_offerred_anchor}
+        function={handleChange}
+        text="Share offerred to anchor"
+        name="share_offerred_anchor"
+      />
+      <Input
+        value={props.data.portion_offerred_anchor}
+        function={handleChange}
+        text="Portion offerred to anchor"
+        name="portion_offerred_anchor"
       />
       <Input
         value={props.data.pe}

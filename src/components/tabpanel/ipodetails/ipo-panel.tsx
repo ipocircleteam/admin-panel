@@ -2,24 +2,34 @@ import React, { useEffect, useState } from "react";
 import $ from "jquery";
 import SearchBar from "./search-bar";
 import Canvas from "./canvas";
-import PanelForm from "./panel-form";
+import IpoTable from "./ipo-table";
 import PanelButtons from "./panel-buttons";
-import { searchIpo } from "../../../reducers/ipo-reducer";
 import { useSelector, useDispatch } from "react-redux";
-import { IpoDetailsType, IpoReducerType } from "../../../types";
-import { setIpoData } from "../../../reducers/ipo-reducer";
-import { initialIpoData } from "../../../data/ipoData";
+import {
+  CompanyFinancesType,
+  IpoDetailsType,
+  IpoLotsType,
+  IpoReducerType,
+  SubscriptionsType,
+} from "../../../types";
+import { setIpoData, searchIpo } from "../../../reducers/ipo-reducer";
+import IpoLots from "./ipolots-table";
+import CompanyFinances from "./company-finances";
+import Subscriptions from "./subscriptions";
 
 export default function IpoPanel() {
-  const ipo = useSelector((state: IpoReducerType) => state.ipo.currentIPO);
   const dispatch = useDispatch();
 
-  const [reviewCount, setReviewCount] = useState(0);
-  const [data, setData] = useState(ipo);
+  const { ipoDetails, ipoLotsDetails, companyFinances, subscriptions } =
+    useSelector((state: IpoReducerType) => state.ipo);
 
-  useEffect(() => {
-    setData(ipo);
-  }, [ipo]);
+  const [reviewCount, setReviewCount] = useState(0);
+  const [ipo, setIpo] = useState({
+    table: ipoDetails,
+    lots: ipoLotsDetails,
+    companyFin: companyFinances,
+    subscriptions: subscriptions,
+  });
 
   const Search = (ipoName: string) => {
     //   write async logic
@@ -33,12 +43,12 @@ export default function IpoPanel() {
     $("#save").removeClass(" bg-gray-500");
     $("#save").addClass(" bg-white");
     // dispatch to change data
-    dispatch(setIpoData({ ipodata: data }));
+    // dispatch(setIpoData({ ipodata: data }));
   };
 
   const reset = () => {
-    setData(initialIpoData);
-    dispatch(setIpoData({ ipodata: initialIpoData }));
+    // setData(initialIpoData);
+    // dispatch(setIpoData({ ipodata: initialIpoData }));
   };
 
   const save = () => {
@@ -59,25 +69,73 @@ export default function IpoPanel() {
     alert("API integration pending");
   };
 
-  const updateData = (data: IpoDetailsType) => {
-    setData(data);
-  };
-
   return (
-    <div className="flex flex-wrap justify-center items-start w-[100vw] p-2 bg-white">
-      <section className="w-[95%] sm:w-[90%] lg:w-[60%]">
-        <PanelForm data={data} callback={updateData} />
+    <div
+      className="flex flex-wrap justify-center items-start w-[100vw] 
+    h-[88vh] bg-white overflow-hidden border border-primary"
+    >
+      <section className="w-[50%] flex justify-center items-start">
+        <section className="h-[87vh] w-[55%] border">
+          <SearchBar Search={Search} />
+          <IpoTable
+            data={ipo.table}
+            callback={(data: IpoDetailsType) => {
+              setIpo({
+                ...ipo,
+                table: data,
+              });
+            }}
+          />
+        </section>
+
+        <section className="h-[87vh] w-[45%] border">
+          <IpoLots
+            data={ipo.lots}
+            callback={(data: IpoLotsType) => {
+              setIpo({
+                ...ipo,
+                lots: data,
+              });
+            }}
+          />
+
+          <CompanyFinances
+            data={ipo.companyFin}
+            callback={(data: CompanyFinancesType) => {
+              setIpo({
+                ...ipo,
+                companyFin: data,
+              });
+            }}
+          />
+
+          <Subscriptions
+            data={ipo.subscriptions}
+            callback={(data: SubscriptionsType) => {
+              setIpo({
+                ...ipo,
+                subscriptions: data,
+              });
+            }}
+          />
+        </section>
+      </section>
+
+      <section className="w-[50%] overflow-hidden">
+        <section className="w-[100%] flex justify-center items-start">
+          <section className="h-[80vh]">
+
+          </section>
+          <section className="h-[80vh]">
+
+          </section>
+        </section>
         <PanelButtons
           save={save}
           review={review}
           modify={modify}
           reset={reset}
         />
-      </section>
-
-      <section className="w-[95%] sm:w-[90%] lg:w-[40%]">
-        <SearchBar Search={Search} />
-        <Canvas details={ipo} />
       </section>
     </div>
   );

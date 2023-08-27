@@ -30,6 +30,8 @@ export type IpoDetailsType = {
     anchor_bid_date: string
     anchor_lockinhalf: string
     anchor_lockinrest: string
+    share_offerred_anchor: number
+    portion_offerred_anchor: number
     pe: number
     marketcap: number
     roe: number
@@ -59,9 +61,38 @@ export type IpoDetailsType = {
 
 export type IpoReducerType = {
     ipo: {
-        currentIPO: IpoDetailsType,
-        status: string,
-        message: string,
+        ipoDetails: IpoDetailsType
+        ipoLotsDetails: IpoLotsType
+        companyFinances: CompanyFinancesType
+        subscriptions: SubscriptionsType
+        status: string
+        message: string
         error: boolean
     }
+}
+
+export type IpoLotsType = {
+    ipo_id: number
+    category: string
+    lots_min: number
+    lots_max: number
+}
+
+export type CompanyFinancesType = {
+    ipo_id: number
+    period: string
+    assets: number
+    revenue: number
+    profit_after_tax: number
+    net_worth: number
+    reserves: number
+    borrowing: number
+}
+
+export type SubscriptionsType = {
+    ipo_id: number
+    category: string
+    shares_offered: number
+    shares_bid: number
+    updated_at: string
 }

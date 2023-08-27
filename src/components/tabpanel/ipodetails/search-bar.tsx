@@ -9,7 +9,7 @@ export default function SearchBar(props: {
   const message = useSelector((state: IpoReducerType) => state.ipo.message);
 
   return (
-    <div className="p-3 bg-primary rounded-lg border w-[95%] mx-auto">
+    <div className="p-2 border-2  w-[100%] m-0">
           <section className="flex justify-center items-center">
           <input
         type="text"
