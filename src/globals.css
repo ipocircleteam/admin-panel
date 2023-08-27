@@ -69,3 +69,7 @@ code {
   transform: translateY(-100px);
   }
 }
+
+::-webkit-scrollbar-track {
+  background-color: rgba(0, 0, 0, 0.1);
+}

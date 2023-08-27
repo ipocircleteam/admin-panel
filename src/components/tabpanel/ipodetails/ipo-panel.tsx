@@ -5,16 +5,15 @@ import Canvas from "./canvas";
 import PanelForm from "./panel-form";
 import PanelButtons from "./panel-buttons";
 import { useSelector, useDispatch } from "react-redux";
-import { IpoReducerType } from "../../../types";
+import { IpoDetailsType, IpoReducerType } from "../../../types";
 import { setIpoData } from "../../../reducers/ipo-reducer";
-import { initialIpoData } from "../../../data/ipoData";
 
 export default function IpoPanel() {
   const ipo = useSelector((state: IpoReducerType) => state.ipo.currentIPO);
   const dispatch = useDispatch();
 
   const [reviewCount, setReviewCount] = useState(0);
-  const [ipodata, setData] = useState(initialIpoData);
+  const [data, setData] = useState(ipo);
 
   const review = () => {
     setReviewCount(reviewCount + 1);
@@ -23,7 +22,7 @@ export default function IpoPanel() {
     $("#save").removeClass(" bg-gray-500");
     $("#save").addClass(" bg-white");
     // dispatch to change data
-    dispatch(setIpoData({ ipodata: ipodata }));
+    dispatch(setIpoData({ ipodata: data }));
   };
 
   const save = () => {
@@ -32,6 +31,7 @@ export default function IpoPanel() {
       return;
     }
     //logic to save data
+      alert("API integration pending")
   };
 
   const modify = () => {
@@ -40,18 +40,23 @@ export default function IpoPanel() {
       return;
     }
     //logic to modify data
+      alert("API integration pending")
   };
+    
+    const updateData = (data: IpoDetailsType) => {
+        setData(data);
+    }
 
   return (
-    <div className="flex justify-center items-center w-[100vw] p-2">
-      <section className="w-[60%]">
-        <PanelForm />
-        <PanelButtons save={save} review={review} modify={modify} />
-      </section>
-
+    <div className="flex justify-center items-center w-[100vw] p-2 bg-white">
       <section className="w-[40%] p-2 overflow-hidden">
         <SearchBar />
         <Canvas details={ipo} />
+      </section>
+
+      <section className="w-[60%]">
+        <PanelForm data={data} callback={updateData} />
+        <PanelButtons save={save} review={review} modify={modify} />
       </section>
     </div>
   );
