@@ -14,13 +14,17 @@ const ipoReducer = createSlice({
     initialState,
     reducers: {
         searchIpo(state, action) {
-            console.log(action.payload);
-            
             return {
                 currentIPO: action.payload.ipoName === "Dummy IPO" ? ipoData : initialIpoData,
                 status: "",
                 message: action.payload.ipoName === "Dummy IPO" ? "" : "IPO Not Found",
                 error: action.payload.ipoName === "Dummy IPO" ? false: true
+            }
+        },
+        setIpoData(state, action) {
+            return {
+                ...state,
+                currentIPO: action.payload.ipodata
             }
         }
     },
@@ -36,5 +40,6 @@ const ipoReducer = createSlice({
 export default ipoReducer.reducer
 
 export const {
-    searchIpo
+    searchIpo,
+    setIpoData
 } = ipoReducer.actions
