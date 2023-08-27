@@ -64,13 +64,8 @@ export default function IpoPanel() {
   };
 
   return (
-    <div className="flex justify-center items-center w-[100vw] p-2 bg-white">
-      <section className="w-[40%] p-2 overflow-hidden">
-        <SearchBar Search={Search} />
-        <Canvas details={ipo} />
-      </section>
-
-      <section className="w-[60%]">
+    <div className="flex flex-wrap justify-center items-center w-[100vw] p-2 bg-white">
+      <section className="w-[95%] sm:w-[90%] lg:w-[60%]">
         <PanelForm data={data} callback={updateData} />
         <PanelButtons
           save={save}
@@ -78,6 +73,11 @@ export default function IpoPanel() {
           modify={modify}
           reset={reset}
         />
+      </section>
+
+      <section className="w-[95%] sm:w-[90%] lg:w-[40%]">
+        <SearchBar Search={Search} />
+        <Canvas details={ipo} />
       </section>
     </div>
   );

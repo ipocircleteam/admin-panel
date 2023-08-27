@@ -55,10 +55,14 @@ export default function IpoDetailsTab() {
           className=""
         >
           <Tab label="IPO details" {...a11yProps(0)} />
+          <Tab label="Other Work" {...a11yProps(1)} />
         </Tabs>
       </Box>
       <CustomTabPanel value={value} index={0}>
         <IpoPanel />
+      </CustomTabPanel>
+      <CustomTabPanel value={value} index={1}>
+        <h2>Can add other data entry work here and in sub sequent jobs</h2>
       </CustomTabPanel>
     </Box>
   );

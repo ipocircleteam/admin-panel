@@ -6,9 +6,10 @@ export default function Canvas(props: {
     details: IpoDetailsType
 }) {
   return (
-    <div className="m-1 bg-[white] p-2 rounded-lg w-[100%] h-[77vh] overflow-x-hidden overflow-y-scroll">
-      <table className="w-[95%] border mx-auto">
-        <thead className="font-semibold">
+    <div className="m-1 bg-[white] rounded-lg w-[95%] mx-auto h-[77vh] overflow-x-hidden 
+    overflow-y-scroll custom-scrollbar border border-primary">
+      <table className="w-[100%] border rounded-lg border-primary">
+        <thead className="font-semibold bg-gray-300">
           <tr>
             <td className="px-2 border w-[50%]">Particulars</td>
             <td className="px-2 border w-[50%]">Value</td>

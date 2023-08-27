@@ -70,6 +70,13 @@ code {
   }
 }
 
-::-webkit-scrollbar-track {
-  background-color: rgba(0, 0, 0, 0.1);
+/* Hide scrollbar for Chrome, Safari and Opera */
+.custom-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.custom-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
 }
