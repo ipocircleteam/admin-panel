@@ -1,7 +1,9 @@
 import {
   CompanyFinancesType,
   IpoDetailsType,
+  IpoLotSizeType,
   IpoLotsType,
+  IpoReservationType,
   SubscriptionsType,
 } from "../types";
 
@@ -187,3 +189,34 @@ export const initialSubscriptions: SubscriptionsType = {
   shares_bid: 0,
   updated_at: "",
 };
+
+
+export const initialReservations: IpoReservationType = {
+    anchor_investor: 0,
+    qib: 0,
+    nii_hni: 0,
+    retail: 0,
+    other: 0,
+    total: 0
+}
+
+export const initialIpoLotSize: IpoLotSizeType = {
+    retail_amount_max: 0,
+    retail_amount_min: 0,
+    retail_lots_max: 0,
+    retail_lots_min: 0,
+    retail_shares_max: 0,
+    retail_shares_min: 0,
+    shni_amount_max: 0,
+    shni_amount_min: 0,
+    shni_lots_max: 0,
+    shni_lots_min: 0,
+    shni_shares_max: 0,
+    shni_shares_min: 0,
+    bhni_amount_max: 0,
+    bhni_amount_min: 0,
+    bhni_lots_max: 0,
+    bhni_lots_min: 0,
+    bhni_shares_max: 0,
+    bhni_shares_min: 0
+}

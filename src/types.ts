@@ -65,6 +65,8 @@ export type IpoReducerType = {
         ipoLotsDetails: IpoLotsType
         companyFinances: CompanyFinancesType
         subscriptions: SubscriptionsType
+        reservations: IpoReservationType
+        ipolotsize: IpoLotSizeType
         status: string
         message: string
         error: boolean
@@ -95,4 +97,34 @@ export type SubscriptionsType = {
     shares_offered: number
     shares_bid: number
     updated_at: string
+}
+
+export type IpoReservationType = {
+    anchor_investor: number
+    qib: number
+    nii_hni: number
+    retail: number
+    other: number
+    total: number
+}
+
+export type IpoLotSizeType = {
+    retail_lots_min: number
+    retail_lots_max: number
+    retail_shares_min: number
+    retail_shares_max: number
+    retail_amount_min: number
+    retail_amount_max: number
+    shni_lots_min: number
+    shni_lots_max: number
+    shni_shares_min: number
+    shni_shares_max: number
+    shni_amount_min: number
+    shni_amount_max: number
+    bhni_lots_min: number
+    bhni_lots_max: number
+    bhni_shares_min: number
+    bhni_shares_max: number
+    bhni_amount_min: number
+    bhni_amount_max: number
 }

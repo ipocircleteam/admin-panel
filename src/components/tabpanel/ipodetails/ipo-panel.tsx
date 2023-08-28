@@ -8,20 +8,30 @@ import { useSelector, useDispatch } from "react-redux";
 import {
   CompanyFinancesType,
   IpoDetailsType,
+  IpoLotSizeType,
   IpoLotsType,
   IpoReducerType,
+  IpoReservationType,
   SubscriptionsType,
 } from "../../../types";
 import { setIpoData, searchIpo } from "../../../reducers/ipo-reducer";
 import IpoLots from "./ipolots-table";
 import CompanyFinances from "./company-finances";
 import Subscriptions from "./subscriptions";
+import IpoReservation from "./ipo-reservation";
+import IpoLotSize from "./ipo-lotsize";
 
 export default function IpoPanel() {
   const dispatch = useDispatch();
 
-  const { ipoDetails, ipoLotsDetails, companyFinances, subscriptions } =
-    useSelector((state: IpoReducerType) => state.ipo);
+  const {
+    ipoDetails,
+    ipoLotsDetails,
+    companyFinances,
+    subscriptions,
+    reservations,
+    ipolotsize,
+  } = useSelector((state: IpoReducerType) => state.ipo);
 
   const [reviewCount, setReviewCount] = useState(0);
   const [ipo, setIpo] = useState({
@@ -29,6 +39,8 @@ export default function IpoPanel() {
     lots: ipoLotsDetails,
     companyFin: companyFinances,
     subscriptions: subscriptions,
+    reservations,
+    ipolotsize,
   });
 
   const Search = (ipoName: string) => {
@@ -123,11 +135,29 @@ export default function IpoPanel() {
 
       <section className="w-[50%] overflow-hidden">
         <section className="w-[100%] flex justify-center items-start">
-          <section className="h-[80vh]">
+          <section className="h-[80vh] w-[50%]">
+            <IpoReservation
+              data={ipo.reservations}
+              callback={(data: IpoReservationType) => {
+                setIpo({
+                  ...ipo,
+                  reservations: data,
+                });
+              }}
+            />
 
+            <IpoLotSize
+              data={ipo.ipolotsize}
+              callback={(data: IpoLotSizeType) => {
+                setIpo({
+                  ...ipo,
+                  ipolotsize: data,
+                });
+              }}
+            />
           </section>
-          <section className="h-[80vh]">
-
+          <section className="h-[80vh] w-[50%]">
+            hi
           </section>
         </section>
         <PanelButtons

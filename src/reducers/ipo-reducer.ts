@@ -2,7 +2,9 @@ import { createSlice } from "@reduxjs/toolkit";
 import {
   initialCompanyFin,
   initialIpoData,
+  initialIpoLotSize,
   initialLotsData,
+  initialReservations,
   initialSubscriptions,
   ipoData,
 } from "../data/ipoData";
@@ -13,6 +15,8 @@ const initialState = {
   ipoLotsDetails: initialLotsData,
   companyFinances: initialCompanyFin,
   subscriptions: initialSubscriptions,
+  reservations: initialReservations,
+  ipolotsize: initialIpoLotSize,
   status: "none",
   message: "",
   error: false,
