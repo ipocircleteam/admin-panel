@@ -6,6 +6,27 @@ export type UserReducerType = {
   };
 };
 
+export type IpoReducerType = {
+    ipo: {
+      ipoDetails: IpoDetailsType;
+      ipoLotsDetails: IpoLotsType;
+      companyFinances: CompanyFinancesType;
+      subscriptions: SubscriptionsType;
+      reservations: IpoReservationType;
+      ipolotsize: IpoLotSizeType;
+      additionalDetails: AdditionalDetailsType;
+      status: string;
+      message: string;
+      error: boolean;
+    };
+};
+  
+export type UserAuthData = {
+    email: String
+    password: String
+    role: String
+}
+
 export type IpoDetailsType = {
   id: string;
   name: string;
@@ -57,21 +78,6 @@ export type IpoDetailsType = {
   anchor_list: string;
   market_maker_portion: number;
   share_in_lot: number;
-};
-
-export type IpoReducerType = {
-  ipo: {
-    ipoDetails: IpoDetailsType;
-    ipoLotsDetails: IpoLotsType;
-    companyFinances: CompanyFinancesType;
-    subscriptions: SubscriptionsType;
-    reservations: IpoReservationType;
-    ipolotsize: IpoLotSizeType;
-    additionalDetails: AdditionalDetailsType;
-    status: string;
-    message: string;
-    error: boolean;
-  };
 };
 
 export type IpoCompleteDataType = {

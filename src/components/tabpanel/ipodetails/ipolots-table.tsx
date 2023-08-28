@@ -3,8 +3,8 @@ import Input from "./input-field";
 import { IpoLotsType } from "../../../types";
 
 export default function IpoLots(props: {
-  data: IpoLotsType
-  callback: (data: IpoLotsType) => void
+  data: IpoLotsType;
+  callback: (data: IpoLotsType) => void;
 }) {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     props.callback({

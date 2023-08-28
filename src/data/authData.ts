@@ -1,4 +1,4 @@
-import { UserAuthData } from "./data.types";
+import { UserAuthData } from "../types"
 
 export const users: UserAuthData[] = [
     {
