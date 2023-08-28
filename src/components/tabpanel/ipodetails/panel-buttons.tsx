@@ -14,7 +14,7 @@ export default function PanelButtons(props: {
         className="bg-white w-[100px] p-2 rounded-lg mx-2"
         onClick={props.reset}
       >
-        Reset
+        RESET
       </button>
 
       <button
@@ -22,7 +22,7 @@ export default function PanelButtons(props: {
         className="bg-white w-[100px] p-2 rounded-lg mx-2"
         onClick={props.save}
       >
-        Save
+        ADD
       </button>
 
       <button
@@ -30,7 +30,7 @@ export default function PanelButtons(props: {
         className="bg-white w-[100px] p-2 rounded-lg mx-2"
         onClick={props.modify}
       >
-        Modify
+        MODIFY
       </button>
     </div>
   );

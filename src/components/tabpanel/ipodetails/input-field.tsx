@@ -15,7 +15,7 @@ export default function Input(props: {
       <input
         name={props.name}
         type="text"
-        //   placeholder={props.text}
+        autoComplete="off"
         className="mx-1 px-1 border"
         value={props.value}
         onChange={props.function}

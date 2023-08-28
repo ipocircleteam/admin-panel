@@ -15,13 +15,13 @@ export default function IpoLotSize(props: {
 
   return (
     <div
-      className="overflow-scroll custom-scrollbar grid grid-cols-1 gap-0 border-r-2 
-    w-[100%] h-[50vh] overflow-x-hidden overflow-y-scroll "
+      className="grid grid-cols-1 gap-0 border-r-2 
+    w-[100%] h-[50vh]"
     >
       <label className="text-[1.2rem] bg-gray-200 text-primary px-[10px] h-[30px] border-b-2">
         IPO Lot Sizes
       </label>
-
+      <div className="overflow-scroll custom-scrollbar overflow-x-hidden overflow-y-scroll ">
       <Input
         value={props.data.retail_amount_max}
         function={handleChange}
@@ -131,7 +131,8 @@ export default function IpoLotSize(props: {
         function={handleChange}
         text="B HNI(Min) Shares"
         name="bhni_shares_min"
-      />
+        />
+        </div>
     </div>
   );
 }
