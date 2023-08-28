@@ -24,7 +24,7 @@ export default function SearchBar(props: {
         Search
           </button>
       </section>
-      <p className="text-primary">{message}</p>
+      <p className="text-red-500">{message}</p>
     </div>
   );
 }
