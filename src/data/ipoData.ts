@@ -1,4 +1,5 @@
 import {
+  AdditionalDetailsType,
   CompanyFinancesType,
   IpoDetailsType,
   IpoLotSizeType,
@@ -219,4 +220,10 @@ export const initialIpoLotSize: IpoLotSizeType = {
     bhni_lots_min: 0,
     bhni_shares_max: 0,
     bhni_shares_min: 0
+}
+
+export const initialAdditionalDetails: AdditionalDetailsType = {
+  company_logo: "",
+  ipo_details_para: "",
+  object_of_the_issue: ""
 }

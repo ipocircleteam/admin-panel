@@ -6,6 +6,7 @@ import IpoTable from "./ipo-table";
 import PanelButtons from "./panel-buttons";
 import { useSelector, useDispatch } from "react-redux";
 import {
+  AdditionalDetailsType,
   CompanyFinancesType,
   IpoDetailsType,
   IpoLotSizeType,
@@ -20,6 +21,7 @@ import CompanyFinances from "./company-finances";
 import Subscriptions from "./subscriptions";
 import IpoReservation from "./ipo-reservation";
 import IpoLotSize from "./ipo-lotsize";
+import AdditionalDetails from "./ipo-addDetails";
 
 export default function IpoPanel() {
   const dispatch = useDispatch();
@@ -31,6 +33,7 @@ export default function IpoPanel() {
     subscriptions,
     reservations,
     ipolotsize,
+    additionalDetails,
   } = useSelector((state: IpoReducerType) => state.ipo);
 
   const [reviewCount, setReviewCount] = useState(0);
@@ -41,6 +44,7 @@ export default function IpoPanel() {
     subscriptions: subscriptions,
     reservations,
     ipolotsize,
+    additionalDetails,
   });
 
   const Search = (ipoName: string) => {
@@ -157,7 +161,15 @@ export default function IpoPanel() {
             />
           </section>
           <section className="h-[80vh] w-[50%]">
-            hi
+            <AdditionalDetails
+              data={ipo.additionalDetails}
+              callback={(data: AdditionalDetailsType) => {
+                setIpo({
+                  ...ipo,
+                  additionalDetails: data,
+                });
+              }}
+            />
           </section>
         </section>
         <PanelButtons

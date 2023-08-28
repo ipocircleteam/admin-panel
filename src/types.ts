@@ -67,6 +67,7 @@ export type IpoReducerType = {
         subscriptions: SubscriptionsType
         reservations: IpoReservationType
         ipolotsize: IpoLotSizeType
+        additionalDetails: AdditionalDetailsType
         status: string
         message: string
         error: boolean
@@ -127,4 +128,10 @@ export type IpoLotSizeType = {
     bhni_shares_max: number
     bhni_amount_min: number
     bhni_amount_max: number
+}
+
+export type AdditionalDetailsType = {
+    company_logo: string
+    ipo_details_para: string
+    object_of_the_issue: string
 }
