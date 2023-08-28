@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
-import $ from "jquery";
 import SearchBar from "./search-bar";
-import Canvas from "./canvas";
 import IpoTable from "./ipo-table";
 import PanelButtons from "./panel-buttons";
 import { useSelector, useDispatch } from "react-redux";
@@ -15,7 +13,7 @@ import {
   IpoReservationType,
   SubscriptionsType,
 } from "../../../types";
-import { setIpoData, searchIpo } from "../../../reducers/ipo-reducer";
+import { resetIpoData, searchIpo } from "../../../reducers/ipo-reducer";
 import IpoLots from "./ipolots-table";
 import CompanyFinances from "./company-finances";
 import Subscriptions from "./subscriptions";
@@ -36,7 +34,6 @@ export default function IpoPanel() {
     additionalDetails,
   } = useSelector((state: IpoReducerType) => state.ipo);
 
-  const [reviewCount, setReviewCount] = useState(0);
   const [ipo, setIpo] = useState({
     table: ipoDetails,
     lots: ipoLotsDetails,
@@ -47,41 +44,51 @@ export default function IpoPanel() {
     additionalDetails,
   });
 
+  useEffect(() => {
+    setIpo({
+      table: ipoDetails,
+      lots: ipoLotsDetails,
+      companyFin: companyFinances,
+      subscriptions: subscriptions,
+      reservations,
+      ipolotsize,
+      additionalDetails,
+    });
+  }, [
+    ipoDetails,
+    ipoLotsDetails,
+    companyFinances,
+    subscriptions,
+    reservations,
+    ipolotsize,
+    additionalDetails,
+  ]);
+
   const Search = (ipoName: string) => {
     //   write async logic
     dispatch(searchIpo({ ipoName: ipoName }));
   };
 
-  const review = () => {
-    setReviewCount(reviewCount + 1);
-    $("#modify").removeClass(" bg-gray-500");
-    $("#modify").addClass(" bg-white");
-    $("#save").removeClass(" bg-gray-500");
-    $("#save").addClass(" bg-white");
-    // dispatch to change data
-    // dispatch(setIpoData({ ipodata: data }));
-  };
-
   const reset = () => {
     // setData(initialIpoData);
-    // dispatch(setIpoData({ ipodata: initialIpoData }));
+    dispatch(resetIpoData({}));
   };
 
   const save = () => {
-    if (reviewCount === 0) {
-      alert("Please review details before proceeding");
-      return;
-    }
     //logic to save data
+    // 1. create a json of all data
+    // 2. Axios request or thunk request
+    // 3. Show processing
+    // 4. Show status
     alert("API integration pending");
   };
 
   const modify = () => {
-    if (reviewCount === 0) {
-      alert("Please review details before proceeding");
-      return;
-    }
     //logic to modify data
+    // 1. create a json of all data
+    // 2. Axios request or thunk request
+    // 3. Show processing
+    // 4. Show status
     alert("API integration pending");
   };
 
@@ -160,6 +167,7 @@ export default function IpoPanel() {
               }}
             />
           </section>
+
           <section className="h-[80vh] w-[50%]">
             <AdditionalDetails
               data={ipo.additionalDetails}
@@ -172,12 +180,7 @@ export default function IpoPanel() {
             />
           </section>
         </section>
-        <PanelButtons
-          save={save}
-          review={review}
-          modify={modify}
-          reset={reset}
-        />
+        <PanelButtons save={save} modify={modify} reset={reset} />
       </section>
     </div>
   );
