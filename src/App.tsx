@@ -13,6 +13,8 @@ import GmpDatabase from "./views/database/gmp";
 import IpoReviewsDatabase from "./views/database/reviews";
 import AddIpo from "./components/database/addIpoDb";
 import UpdateAndDeleteIpo from "./components/database/updateDeleteIpo";
+import Home from "./views/home";
+import IpoTrackerDatabase from "./views/database/ipoTracker";
 
 function App() {
   const view = useSelector((state: UserReducerType) => state.user.view);
@@ -26,13 +28,14 @@ function App() {
       <Header />
       <BrowserRouter>
         <Routes>
+          <Route path="/" element={<Home />} />
           <Route path="/database" element={<DataEntry />} />
 
           <Route path="/database/ipo" element={<IpoDatabase />} />
           <Route path="/database/ipo/add" element={<AddIpo />} />
           <Route path="/database/ipo/update_delete" element={<UpdateAndDeleteIpo />} />
 
-          <Route path="/database/tracker" element={<IpoTracker />} />
+          <Route path="/database/tracker" element={<IpoTrackerDatabase />} />
           <Route path="/database/gmp" element={<GmpDatabase />} />
           <Route path="/database/reviews" element={<IpoReviewsDatabase />} />
         </Routes>
