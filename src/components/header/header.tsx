@@ -9,7 +9,7 @@ export default function Header() {
   const dispatch = useDispatch();
 
   return (
-    <div className="fixed p-4 z-50 flex justify-between items-center w-[100vw] h-[50px] overflow-hidden bg-primary border-b-2">
+    <div className="fixed p-4 z-50 flex justify-between items-center w-[100vw] h-[50px] overflow-hidden bg-blue-900 border-b-2">
       <section className="bg-base">
         <img className="h-[40px]" src={LogoIcon} alt="IPO Circle" />
       </section>

@@ -16,7 +16,7 @@ export default function Input(props: {
         name={props.name}
         type="text"
         autoComplete="off"
-        className="mx-1 px-1 borde border-gray-300 "
+        className="mx-1 px-1 border border-gray-300 w-[200px] "
         value={props.value}
         onChange={props.function}
       />

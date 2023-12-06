@@ -6,41 +6,13 @@ export default function CompanyFinances(props: {
   data: CompanyFinanceType;
   callback: (data: CompanyFinanceType) => void;
 }) {
-  // const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-  //   props.callback({
-  //     "y2019": {
-  //       ...props.data.y2019,
-  //     [e.target.name]: e.target.value,
-  //     },
-  //     "y2020": {
-  //       ...props.data.y2020,
-  //     [e.target.name]: e.target.value,
-  //     },
-  //     "y2019": {
-  //       ...props.data.y2019,
-  //     [e.target.name]: e.target.value,
-  //     },
-  //     "y2019": {
-  //       ...props.data.y2019,
-  //     [e.target.name]: e.target.value,
-  //     },
-  //     "y2023": {
-  //       ...props.data.y2023,
-  //     [e.target.name]: e.target.value,
-  //     },
-  //     "y2024": {
-  //       ...props.data.y2024,
-  //     [e.target.name]: e.target.value,
-  //     },
-  //   });
-  // };
 
   return (
     <div
-      className="overflow-scroll grid grid-cols-1 gap-0 border-r-2 
+      className="overflow-scroll grid grid-cols-1 gap-0 border-2 
     w-[100%] overflow-x-hidden overflow-y-scroll h-[80vh]"
     >
-      <label className="text-[1.2rem] border-primary bg-gray-200 text-primary px-[10px] h-[30px] border-b-2">
+      <label className="text-[1.2rem] px-[10px] h-[30px]">
         Company Finances
       </label>
       <h1 className="bg-gray-100">Year 2023</h1>

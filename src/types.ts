@@ -65,7 +65,7 @@ export type IpoDetailsType = {
   anchor_list: string[];
   shares_in_lot: number;
   dayend_price: number;
-  cutoffmandate: number;
+  cutoffmandate: Date;
   defunct: boolean;
   retail_discount: number;
   employee_discount: number;
@@ -75,7 +75,7 @@ export type IpoDetailsType = {
   ofs: number;
   allotment_date: Date;
   credit_of: string;
-  time_upf: string;
+  time_upf: Date;
   min_retail: number;
   max_retail: number;
   min_shni: number;

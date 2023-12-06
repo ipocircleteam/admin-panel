@@ -174,7 +174,7 @@ export default function IpoPanel() {
         <div className="w-[80%] overflow-hidden">
           <div className="grid grid-cols-3">
             <section className="border col-span-2">
-              <IpoTable
+              {/* <IpoTable
                 data={activeIpo.ipodetails}
                 callback={(data: IpoDetailsType) => {
                   setActiveIpo({
@@ -182,7 +182,7 @@ export default function IpoPanel() {
                     ipodetails: data,
                   });
                 }}
-              />
+              /> */}
             </section>
             <section className="border col-span-1">
               <CompanyFinances

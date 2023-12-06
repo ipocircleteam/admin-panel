@@ -5,6 +5,7 @@ import Input from "./input-field";
 export default function IpoTable(props: {
   data: IpoDetailsType;
   callback: (data: IpoDetailsType) => void;
+  selectcallback: (data: IpoDetailsType) => void
 }) {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     props.callback({
@@ -20,22 +21,29 @@ export default function IpoTable(props: {
       className="grid grid-cols-1 gap-0 border-2  
     w-[100%] h-[80vh]  "
     >
-      <label className="text-[1.2rem] bg-gray-200 h-[30px] text-primary px-[10px] border-b-2">
-        IPO Details: {props.data.name}
-      </label>
-      <div className="overflow-scroll overflow-x-hidden overflow-y-scroll p-4 grid grid-cols-2 gap-x-5">
+      <div className="overflow-scroll overflow-x-hidden overflow-y-scroll p-4">
         <Input
           value={props.data.name}
           function={handleChange}
           text="Name"
           name="name"
         />
-        <Input
-          value={props.data.series}
-          function={handleChange}
-          text="Series(sme or eq)"
-          name="series"
-        />
+        <div
+      className=" flex justify-between items-center h-[60px] 
+        border-gray-200 overflow-hidden border p-2"
+    >
+      <label className="mx-1 text-[0.9rem] font-bold ">Series : </label>
+          <select className="mx-1 px-1 border border-gray-300 w-[200px]" name="series" onChange={(e) => {
+            props.selectcallback({
+              ...props.data,
+              [e.target.name]: e.target.value,
+            });
+          }}>
+          <option>sme</option>
+          <option>eq</option>
+        </select>
+    </div>
+        
         <Input
           value={props.data.description}
           function={handleChange}
@@ -331,9 +339,9 @@ export default function IpoTable(props: {
           name="dayend_price"
         />
         <Input
-          value={props.data.cutoffmandate}
+          value={String(props.data.cutoffmandate)}
           function={handleChange}
-          text="Cutoffmandate"
+          text="Cutoffmandate (YYYY-MM-DD)"
           name="cutoffmandate"
         />
         <Input
@@ -391,9 +399,9 @@ export default function IpoTable(props: {
           name="credit_of"
         />
         <Input
-          value={props.data.time_upf}
+          value={String(props.data.time_upf)}
           function={handleChange}
-          text="Time UPF"
+          text="Time UPF (YYYY-MM-DD)"
           name="time_upf"
         />
         <Input
