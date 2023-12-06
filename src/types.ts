@@ -6,68 +6,55 @@ export type UserReducerType = {
   };
 };
 
-export type IpoReducerType = {
-    ipo: {
-      ipoDetails: IpoDetailsType;
-      ipoLotsDetails: IpoLotsType;
-      companyFinances: CompanyFinancesType;
-      subscriptions: SubscriptionsType;
-      reservations: IpoReservationType;
-      ipolotsize: IpoLotSizeType;
-      additionalDetails: AdditionalDetailsType;
-      status: string;
-      message: string;
-      error: boolean;
-    };
-};
-  
 export type UserAuthData = {
-    email: String
-    password: String
-    role: String
-}
+  email: String;
+  password: String;
+  role: String;
+};
 
 export type IpoDetailsType = {
   id: string;
   name: string;
   series: string;
-  facevalue: number;
+  description: string;
+  face_value: number;
   min_price: number;
   max_price: number;
-  total_issue: number;
-  fresh_issue: number;
+  total_issues: number;
+  fresh_issues: number;
   issue_type: string;
-  listing_at: string;
-  gen_holding_pre_issue: number;
-  gen_holding_post_issue: number;
-  opening_date: string;
-  closing_date: string;
-  basis_date: string;
-  initiation_of_refunds: string;
-  shares_to_demat: string;
-  listing_date: string;
-  promoter_holdings_preissue: number;
-  promoter_holdings_postissue: number;
-  anchor_bid_date: string;
-  anchor_lockinhalf: string;
-  anchor_lockinrest: string;
-  share_offerred_anchor: number;
-  portion_offerred_anchor: number;
+  listing_at: string[];
+  gen_holding_pre: number;
+  gen_holding_post: number;
+  opening_date: Date;
+  closing_date: Date;
+  basis_date: Date;
+  init_refunds: Date;
+  shares_to_demat: Date;
+  listing_date: Date;
+  promoter_holding_pre: number;
+  promoter_holding_post: number;
+  anchor_bid_date: Date;
+  anchor_lockin_half: Date;
+  anchor_lockin_rest: Date;
   pe: number;
-  marketcap: number;
+  market_cap: number;
   roe: number;
   roce: number;
   eps: number;
   ronw: number;
-  bse_script_code: string;
-  nse_symbol: string;
+  bse_code: string;
+  bse_url: string;
+  nse_code: string;
+  nse_url: string;
   final_price: number;
-  preopen_nse: string;
-  preopen_bse: string;
+  pre_open_nse: string;
+  pre_open_bse: string;
   company_address: string;
   company_phone: string;
   company_email: string;
   company_website: string;
+  company_logo: string;
   registrar_address: string;
   registrar_phone: string;
   registrar_email: string;
@@ -75,79 +62,62 @@ export type IpoDetailsType = {
   registrar_name: string;
   drhp: string;
   rhp: string;
-  anchor_list: string;
-  market_maker_portion: number;
-  share_in_lot: number;
+  anchor_list: string[];
+  shares_in_lot: number;
+  dayend_price: number;
+  cutoffmandate: number;
+  defunct: boolean;
+  retail_discount: number;
+  employee_discount: number;
+  anchor_portion: number;
+  debt: number;
+  priceband: number;
+  ofs: number;
+  allotment_date: Date;
+  credit_of: string;
+  time_upf: string;
+  min_retail: number;
+  max_retail: number;
+  min_shni: number;
+  max_shni: number;
+  min_bhni: number;
+  max_bhni: number;
+  qib: string;
+  nii_snii: number;
+  nii_bnii: number;
+  retail: number;
+  anchor_shares_offerred: number;
+  qib_shares_offerred: number;
+  nil_shares_offerred: number;
+  retail_shares_offerred: number;
+  objectIssueData: string;
 };
 
-export type IpoCompleteDataType = {
-  ipoDetails: IpoDetailsType;
-  ipoLotsDetails: IpoLotsType;
-  companyFinances: CompanyFinancesType;
-  subscriptions: SubscriptionsType;
-  reservations: IpoReservationType;
-  ipolotsize: IpoLotSizeType;
-  additionalDetails: AdditionalDetailsType;
-};
-
-export type IpoLotsType = {
-  ipo_id: number;
-  category: string;
-  lots_min: number;
-  lots_max: number;
-};
-
-export type CompanyFinancesType = {
-  ipo_id: number;
-  period: string;
+interface CompFin_VALUE {
   assets: number;
   revenue: number;
   profit_after_tax: number;
-  net_worth: number;
+  networth: number;
   reserves: number;
   borrowing: number;
+}
+
+export type CompanyFinanceType = {
+  ipo_id: string;
+  y2024: CompFin_VALUE;
+  y2023: CompFin_VALUE;
+  y2022: CompFin_VALUE;
+  y2021: CompFin_VALUE;
+  y2020: CompFin_VALUE;
+  y2019: CompFin_VALUE;
 };
 
-export type SubscriptionsType = {
-  ipo_id: number;
-  category: string;
-  shares_offered: number;
-  shares_bid: number;
-  updated_at: string;
-};
+export type ReviewsType = {
+  ipo_id: string;
+  review: string;
+}
 
-export type IpoReservationType = {
-  anchor_investor: number;
-  qib: number;
-  nii_hni: number;
-  retail: number;
-  other: number;
-  total: number;
-};
-
-export type IpoLotSizeType = {
-  retail_lots_min: number;
-  retail_lots_max: number;
-  retail_shares_min: number;
-  retail_shares_max: number;
-  retail_amount_min: number;
-  retail_amount_max: number;
-  shni_lots_min: number;
-  shni_lots_max: number;
-  shni_shares_min: number;
-  shni_shares_max: number;
-  shni_amount_min: number;
-  shni_amount_max: number;
-  bhni_lots_min: number;
-  bhni_lots_max: number;
-  bhni_shares_min: number;
-  bhni_shares_max: number;
-  bhni_amount_min: number;
-  bhni_amount_max: number;
-};
-
-export type AdditionalDetailsType = {
-  company_logo: string;
-  ipo_details_para: string;
-  object_of_the_issue: string;
+export type IpolistType = {
+  name: string;
+  id: string;
 };

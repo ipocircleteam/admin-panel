@@ -1,187 +1,190 @@
 import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { toast } from "react-toastify";
 import SearchBar from "./search-bar";
 import IpoTable from "./ipo-table";
 import PanelButtons from "./panel-buttons";
-import { useSelector, useDispatch } from "react-redux";
 import {
-  AdditionalDetailsType,
-  CompanyFinancesType,
+  CompanyFinanceType,
   IpoDetailsType,
-  IpoLotSizeType,
-  IpoLotsType,
-  IpoReducerType,
-  IpoReservationType,
-  SubscriptionsType,
+  IpolistType,
+  ReviewsType,
 } from "../../../types";
-import { resetIpoData, searchIpo } from "../../../reducers/ipo-reducer";
-import IpoLots from "./ipolots-table";
+import IpoList from "./ipolist";
+import {
+  initReview,
+  initialCompanyFinance,
+  initialIpoData,
+} from "../../../data/ipoData";
 import CompanyFinances from "./company-finances";
-import Subscriptions from "./subscriptions";
-import IpoReservation from "./ipo-reservation";
-import IpoLotSize from "./ipo-lotsize";
-import AdditionalDetails from "./ipo-addDetails";
 
 export default function IpoPanel() {
-  const dispatch = useDispatch();
-
-  const {
-    ipoDetails,
-    ipoLotsDetails,
-    companyFinances,
-    subscriptions,
-    reservations,
-    ipolotsize,
-    additionalDetails,
-  } = useSelector((state: IpoReducerType) => state.ipo);
-
-  const [ipo, setIpo] = useState({
-    table: ipoDetails,
-    lots: ipoLotsDetails,
-    companyFin: companyFinances,
-    subscriptions: subscriptions,
-    reservations,
-    ipolotsize,
-    additionalDetails,
+  const [ipoList, setIpoList] = useState<IpolistType[] | undefined>();
+  const [referenceList, setReference] = useState<IpolistType[] | undefined>();
+  const [activeIpo, setActiveIpo] = useState({
+    ipodetails: initialIpoData,
+    companyFinance: initialCompanyFinance,
+    reviews: initReview,
   });
 
+  function loadIpoList() {
+    toast.loading("Fetching IPO List...");
+    axios
+      .get(`${process.env.API_URL}/api/v1/ipo/ipolist`)
+      .then((res) => {
+        toast.dismiss();
+        setIpoList(res.data.data);
+        setReference(res.data.data);
+      })
+      .catch((error) => {
+        toast.dismiss();
+        toast.error(error.data.msg);
+        console.log(`Error fetching ipo list, ${error}`);
+      });
+  }
+
   useEffect(() => {
-    setIpo({
-      table: ipoDetails,
-      lots: ipoLotsDetails,
-      companyFin: companyFinances,
-      subscriptions: subscriptions,
-      reservations,
-      ipolotsize,
-      additionalDetails,
+    loadIpoList();
+  }, []);
+
+  const getIpoFromId = async (id: string) => {
+    toast.loading("Wait, Fetching IPO Details...");
+    Reset();
+    try {
+      const ipoRes = await axios
+        .get(`${process.env.API_URL}/api/admin/v1/ipo/details?ipoId=${id}`)
+        .catch((error) => {
+          console.log(error);
+          toast.dismiss();
+          toast.info(error.response.data.msg);
+        });
+      if (!ipoRes?.data.success) {
+        toast.dismiss();
+        toast.error("didn't received data");
+        return;
+      }
+      const resdata = ipoRes?.data.data;
+      const formattedData = {
+        ipodetails: resdata.ipodetails[0],
+        companyFinance: resdata.companyFinance[0],
+        reviews: resdata.reviews[0],
+      };
+      setActiveIpo(formattedData);
+
+      toast.dismiss();
+      toast.success("Details fetched");
+    } catch (error: any) {
+      console.log(error);
+      toast.dismiss();
+      toast.error(error.response.data.msg);
+    }
+  };
+
+  const Search = async (query: string) => {
+    const filteredData = await ipoList?.filter((item) => {
+      return item.name.includes(query);
     });
-  }, [
-    ipoDetails,
-    ipoLotsDetails,
-    companyFinances,
-    subscriptions,
-    reservations,
-    ipolotsize,
-    additionalDetails,
-  ]);
-
-  const Search = (ipoName: string) => {
-    //   write async logic
-    dispatch(searchIpo({ ipoName: ipoName }));
+    setIpoList(filteredData);
   };
 
-  const reset = () => {
-    // setData(initialIpoData);
-    dispatch(resetIpoData({}));
+  const Reset = () => {
+    setIpoList(referenceList);
+    setActiveIpo({
+      ipodetails: initialIpoData,
+      companyFinance: initialCompanyFinance,
+      reviews: initReview,
+    });
   };
 
-  const save = () => {
-    //logic to save data
-    // 1. create a json of all data
-    // 2. Axios request or thunk request
-    // 3. Show processing
-    // 4. Show status
-    alert("API integration pending");
+  const save = async () => {
+    console.log(activeIpo);
+    toast.loading("Wait, adding ipo...");
+
+    const newId = activeIpo.ipodetails.name + activeIpo.ipodetails.series;
+    activeIpo.ipodetails.id = newId;
+    activeIpo.companyFinance.ipo_id = newId;
+    activeIpo.reviews.ipo_id = newId;
+
+    await axios
+      .post(`${process.env.API_URL}/api/admin/v1/ipo/create`, activeIpo)
+      .then((res) => {
+        toast.dismiss();
+        toast.success("Data created successfully");
+        setIpoList(res.data.data);
+        setReference(res.data.data);
+        loadIpoList()
+      })
+      .catch((error) => {
+        toast.dismiss();
+        toast.error(error.data.msg);
+        console.log(error);
+        console.log(`Error fetching ipo list, ${error}`);
+      });
   };
 
-  const modify = () => {
-    //logic to modify data
-    // 1. create a json of all data
-    // 2. Axios request or thunk request
-    // 3. Show processing
-    // 4. Show status
-    alert("API integration pending");
+  const modify = async () => {
+    console.log(activeIpo);
+    toast.loading("Wait, modifying ipo...");
+    await axios
+      .patch(`${process.env.API_URL}/api/admin/v1/ipo/update`, activeIpo)
+      .then((res) => {
+        toast.dismiss();
+        toast.success("Data updated successfully");
+        setIpoList(res.data.data);
+        setReference(res.data.data);
+        loadIpoList()
+      })
+      .catch((error) => {
+        toast.dismiss();
+        toast.error(error.data.msg);
+        console.log(error);
+        console.log(`Error fetching ipo list, ${error}`);
+      });
   };
 
   return (
-    <div
-      className="flex flex-wrap justify-center items-start w-[100vw] 
-    h-[88vh] bg-white overflow-hidden border border-primary"
-    >
-      <section className="w-[50%] flex justify-center items-start">
-        <section className="h-[87vh] w-[55%] border">
+    <>
+      <div className="hidden lg:flex flex-wrap justify-center items-start w-[100vw] h-[100vw] bg-white overflow-hidden border border-primary">
+        <div className="w-[20%] border-r h-[100%] border-primary overlow-x-hidden overflow-y-scroll">
           <SearchBar Search={Search} />
-          <IpoTable
-            data={ipo.table}
-            callback={(data: IpoDetailsType) => {
-              setIpo({
-                ...ipo,
-                table: data,
-              });
+          <p>Total IPOs: {ipoList?.length}</p>
+          <IpoList
+            data={ipoList}
+            populateData={(id: string) => {
+              getIpoFromId(id);
             }}
           />
-        </section>
+        </div>
 
-        <section className="h-[87vh] w-[45%] border">
-          <IpoLots
-            data={ipo.lots}
-            callback={(data: IpoLotsType) => {
-              setIpo({
-                ...ipo,
-                lots: data,
-              });
-            }}
-          />
-
-          <CompanyFinances
-            data={ipo.companyFin}
-            callback={(data: CompanyFinancesType) => {
-              setIpo({
-                ...ipo,
-                companyFin: data,
-              });
-            }}
-          />
-
-          <Subscriptions
-            data={ipo.subscriptions}
-            callback={(data: SubscriptionsType) => {
-              setIpo({
-                ...ipo,
-                subscriptions: data,
-              });
-            }}
-          />
-        </section>
-      </section>
-
-      <section className="w-[50%] overflow-hidden">
-        <section className="w-[100%] flex justify-center items-start">
-          <section className="h-[80vh] w-[50%]">
-            <IpoReservation
-              data={ipo.reservations}
-              callback={(data: IpoReservationType) => {
-                setIpo({
-                  ...ipo,
-                  reservations: data,
-                });
-              }}
-            />
-
-            <IpoLotSize
-              data={ipo.ipolotsize}
-              callback={(data: IpoLotSizeType) => {
-                setIpo({
-                  ...ipo,
-                  ipolotsize: data,
-                });
-              }}
-            />
-          </section>
-
-          <section className="h-[80vh] w-[50%]">
-            <AdditionalDetails
-              data={ipo.additionalDetails}
-              callback={(data: AdditionalDetailsType) => {
-                setIpo({
-                  ...ipo,
-                  additionalDetails: data,
-                });
-              }}
-            />
-          </section>
-        </section>
-        <PanelButtons save={save} modify={modify} reset={reset} />
-      </section>
-    </div>
+        <div className="w-[80%] overflow-hidden">
+          <div className="grid grid-cols-3">
+            <section className="border col-span-2">
+              <IpoTable
+                data={activeIpo.ipodetails}
+                callback={(data: IpoDetailsType) => {
+                  setActiveIpo({
+                    ...activeIpo,
+                    ipodetails: data,
+                  });
+                  console.log(activeIpo.ipodetails);
+                }}
+              />
+            </section>
+            <section className="border col-span-1">
+              <CompanyFinances
+                data={activeIpo.companyFinance}
+                callback={(data: CompanyFinanceType) => {
+                  setActiveIpo({
+                    ...activeIpo,
+                    companyFinance: data,
+                  });
+                }}
+              />
+            </section>
+          </div>
+          <PanelButtons save={save} modify={modify} reset={Reset} />
+        </div>
+      </div>
+    </>
   );
 }

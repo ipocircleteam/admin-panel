@@ -1,10 +1,7 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
-import { IpoReducerType } from "../../../types";
 
 export default function SearchBar(props: { Search: (ipo: string) => void }) {
   const [ipo, setIpo] = useState("");
-  const message = useSelector((state: IpoReducerType) => state.ipo.message);
 
   return (
     <div className="p-2 border-2  w-[100%] m-0">
@@ -27,7 +24,6 @@ export default function SearchBar(props: { Search: (ipo: string) => void }) {
           Search
         </button>
       </section>
-      <p className="text-red-500">{message}</p>
     </div>
   );
 }

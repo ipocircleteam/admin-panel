@@ -4,6 +4,8 @@ import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import IpoPanel from "../tabpanel/ipodetails/ipo-panel";
+import IpoTracker from "../tabpanel/ipoTracker";
+import Gmp from "../tabpanel/gmp";
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -55,14 +57,18 @@ export default function IpoDetailsTab() {
           className=""
         >
           <Tab label="IPO details" {...a11yProps(0)} />
-          <Tab label="Other Work" {...a11yProps(1)} />
+          <Tab label="IPO tracker" {...a11yProps(1)} />
+          <Tab label="GMP" {...a11yProps(2)} />
         </Tabs>
       </Box>
       <CustomTabPanel value={value} index={0}>
         <IpoPanel />
       </CustomTabPanel>
       <CustomTabPanel value={value} index={1}>
-        <h2>Can add other data entry work here and in sub sequent jobs</h2>
+        <IpoTracker />
+      </CustomTabPanel>
+      <CustomTabPanel value={value} index={2}>
+        <Gmp />
       </CustomTabPanel>
     </Box>
   );
