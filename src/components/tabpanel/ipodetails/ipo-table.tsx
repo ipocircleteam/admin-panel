@@ -28,7 +28,7 @@ export default function IpoTable(props: {
           text="Name"
           name="name"
         />
-        <div
+        {/* <div
       className=" flex justify-between items-center h-[60px] 
         border-gray-200 overflow-hidden border p-2"
     >
@@ -42,7 +42,14 @@ export default function IpoTable(props: {
           <option>sme</option>
           <option>eq</option>
         </select>
-    </div>
+        </div> */}
+        
+        <Input
+          value={props.data.series}
+          function={handleChange}
+          text="Series (inputs: 'sme' or 'eq')"
+          name="series"
+        />
         
         <Input
           value={props.data.description}

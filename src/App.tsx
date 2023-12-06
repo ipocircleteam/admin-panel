@@ -12,6 +12,7 @@ import IpoTracker from "./components/tabpanel/ipoTracker";
 import GmpDatabase from "./views/database/gmp";
 import IpoReviewsDatabase from "./views/database/reviews";
 import AddIpo from "./components/database/addIpoDb";
+import UpdateAndDeleteIpo from "./components/database/updateDeleteIpo";
 
 function App() {
   const view = useSelector((state: UserReducerType) => state.user.view);
@@ -29,6 +30,7 @@ function App() {
 
           <Route path="/database/ipo" element={<IpoDatabase />} />
           <Route path="/database/ipo/add" element={<AddIpo />} />
+          <Route path="/database/ipo/update_delete" element={<UpdateAndDeleteIpo />} />
 
           <Route path="/database/tracker" element={<IpoTracker />} />
           <Route path="/database/gmp" element={<GmpDatabase />} />

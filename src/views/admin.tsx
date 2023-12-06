@@ -3,7 +3,6 @@ import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
-import IpoPanel from "../components/tabpanel/ipodetails/ipo-panel";
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -79,7 +78,7 @@ export default function Admin() {
           Marketing
         </CustomTabPanel>
         <CustomTabPanel value={value} index={4}>
-          <IpoPanel />
+          {/* <IpoPanel /> */}
         </CustomTabPanel>
         <CustomTabPanel value={value} index={5}>
           Discussion Board

@@ -10,8 +10,6 @@ export default function Stats() {
 
             <div className=''>
                 <StatsCard />
-                <StatsCard />
-                <StatsCard />
             </div>
         </div>
     )
