@@ -20,8 +20,8 @@ export type IpoDetailsType = {
   face_value: number;
   min_price: number;
   max_price: number;
-  total_issues: number;
-  fresh_issues: number;
+  total_issue: number;
+  fresh_issue: number;
   issue_type: string;
   listing_at: string[];
   gen_holding_pre: number;

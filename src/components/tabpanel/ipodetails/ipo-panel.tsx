@@ -30,7 +30,7 @@ export default function IpoPanel() {
   function loadIpoList() {
     toast.loading("Fetching IPO List...");
     axios
-      .get(`${process.env.API_URL}/api/v1/ipo/ipolist`)
+      .get(`https://api.ipocircle.com/api/v1/ipo/ipolist`)
       .then((res) => {
         toast.dismiss();
         setIpoList(res.data.data);
@@ -52,7 +52,7 @@ export default function IpoPanel() {
     Reset();
     try {
       const ipoRes = await axios
-        .get(`${process.env.API_URL}/api/admin/v1/ipo/details?ipoId=${id}`)
+        .get(`https://api.ipocircle.com/api/admin/v1/ipo/details?ipoId=${id}`)
         .catch((error) => {
           console.log(error);
           toast.dismiss();
@@ -96,6 +96,19 @@ export default function IpoPanel() {
     });
   };
 
+  const formatActiveIpo = async () => {
+    activeIpo.ipodetails.opening_date = new Date(activeIpo.ipodetails.opening_date)
+    activeIpo.ipodetails.closing_date = new Date(activeIpo.ipodetails.closing_date)
+    activeIpo.ipodetails.basis_date = new Date(activeIpo.ipodetails.basis_date)
+    activeIpo.ipodetails.init_refunds = new Date(activeIpo.ipodetails.init_refunds)
+    activeIpo.ipodetails.shares_to_demat = new Date(activeIpo.ipodetails.shares_to_demat)
+    activeIpo.ipodetails.listing_date = new Date(activeIpo.ipodetails.listing_date)
+    activeIpo.ipodetails.anchor_bid_date = new Date(activeIpo.ipodetails.anchor_bid_date)
+    activeIpo.ipodetails.anchor_lockin_half = new Date(activeIpo.ipodetails.anchor_lockin_half)
+    activeIpo.ipodetails.anchor_lockin_rest = new Date(activeIpo.ipodetails.anchor_lockin_rest)
+    activeIpo.ipodetails.allotment_date = new Date(activeIpo.ipodetails.allotment_date)
+  }
+
   const save = async () => {
     console.log(activeIpo);
     toast.loading("Wait, adding ipo...");
@@ -104,9 +117,10 @@ export default function IpoPanel() {
     activeIpo.ipodetails.id = newId;
     activeIpo.companyFinance.ipo_id = newId;
     activeIpo.reviews.ipo_id = newId;
+    await formatActiveIpo()
 
     await axios
-      .post(`${process.env.API_URL}/api/admin/v1/ipo/create`, activeIpo)
+      .post(`https://api.ipocircle.com/api/admin/v1/ipo/create`, activeIpo)
       .then((res) => {
         toast.dismiss();
         toast.success("Data created successfully");
@@ -116,7 +130,7 @@ export default function IpoPanel() {
       })
       .catch((error) => {
         toast.dismiss();
-        toast.error(error.data.msg);
+        toast.error('Some error occurred');
         console.log(error);
         console.log(`Error fetching ipo list, ${error}`);
       });
@@ -125,8 +139,9 @@ export default function IpoPanel() {
   const modify = async () => {
     console.log(activeIpo);
     toast.loading("Wait, modifying ipo...");
+    await formatActiveIpo()
     await axios
-      .patch(`${process.env.API_URL}/api/admin/v1/ipo/update`, activeIpo)
+      .patch(`https://api.ipocircle.com/api/admin/v1/ipo/update`, activeIpo)
       .then((res) => {
         toast.dismiss();
         toast.success("Data updated successfully");
@@ -136,7 +151,7 @@ export default function IpoPanel() {
       })
       .catch((error) => {
         toast.dismiss();
-        toast.error(error.data.msg);
+        toast.error('Some error occurred');
         console.log(error);
         console.log(`Error fetching ipo list, ${error}`);
       });
@@ -145,7 +160,7 @@ export default function IpoPanel() {
   return (
     <>
       <div className="hidden lg:flex flex-wrap justify-center items-start w-[100vw] h-[100vw] bg-white overflow-hidden border border-primary">
-        <div className="w-[20%] border-r h-[100%] border-primary overlow-x-hidden overflow-y-scroll">
+        <div className="w-[20%] border-r h-[100%] overlow-x-hidden overflow-y-scroll">
           <SearchBar Search={Search} />
           <p>Total IPOs: {ipoList?.length}</p>
           <IpoList
@@ -166,7 +181,6 @@ export default function IpoPanel() {
                     ...activeIpo,
                     ipodetails: data,
                   });
-                  console.log(activeIpo.ipodetails);
                 }}
               />
             </section>

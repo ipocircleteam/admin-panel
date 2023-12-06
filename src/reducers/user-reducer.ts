@@ -4,7 +4,7 @@ import getView from "../utils/getView";
 const initialState = {
     email: "",
     role: "",
-    view: "auth"
+    view: "DATA ENTRY"
 }
 
 const userReducer = createSlice({

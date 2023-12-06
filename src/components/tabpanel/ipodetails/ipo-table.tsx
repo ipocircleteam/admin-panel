@@ -23,7 +23,7 @@ export default function IpoTable(props: {
       <label className="text-[1.2rem] bg-gray-200 h-[30px] text-primary px-[10px] border-b-2">
         IPO Details: {props.data.name}
       </label>
-      <div className="overflow-scroll overflow-x-hidden overflow-y-scroll grid grid-cols-2 gap-x-5">
+      <div className="overflow-scroll overflow-x-hidden overflow-y-scroll p-4 grid grid-cols-2 gap-x-5">
         <Input
           value={props.data.name}
           function={handleChange}
@@ -61,13 +61,13 @@ export default function IpoTable(props: {
           name="max_price"
         />
         <Input
-          value={props.data.total_issues}
+          value={props.data.total_issue}
           function={handleChange}
           text="Total Issue"
           name="total_issue"
         />
         <Input
-          value={props.data.fresh_issues}
+          value={props.data.fresh_issue}
           function={handleChange}
           text="Fresh Issue"
           name="fresh_issue"
@@ -99,37 +99,37 @@ export default function IpoTable(props: {
         <Input
           value={String(props.data.opening_date)}
           function={handleChange}
-          text="Opening Date"
+          text="Opening Date (YYYY-MM-DD)"
           name="opening_date"
         />
         <Input
           value={String(props.data.closing_date)}
           function={handleChange}
-          text="Closing Date"
+          text="Closing Date (YYYY-MM-DD)"
           name="closing_date"
         />
         <Input
           value={String(props.data.basis_date)}
           function={handleChange}
-          text="Basis Date"
+          text="Basis Date (YYYY-MM-DD)"
           name="basis_date"
         />
         <Input
           value={String(props.data.init_refunds)}
           function={handleChange}
-          text="Initiation of refunds"
+          text="Initiation of refunds (YYYY-MM-DD)"
           name="init_refunds"
         />
         <Input
           value={String(props.data.shares_to_demat)}
           function={handleChange}
-          text="Shares to Demat"
+          text="Shares to Demat (YYYY-MM-DD)"
           name="shares_to_demat"
         />
         <Input
           value={String(props.data.listing_date)}
           function={handleChange}
-          text="Listing Date"
+          text="Listing Date (YYYY-MM-DD)"
           name="listing_date"
         />
         <Input
@@ -147,19 +147,19 @@ export default function IpoTable(props: {
         <Input
           value={String(props.data.anchor_bid_date)}
           function={handleChange}
-          text="Anchor Bid Date"
+          text="Anchor Bid Date (YYYY-MM-DD)"
           name="anchor_bid_date"
         />
         <Input
           value={String(props.data.anchor_lockin_half)}
           function={handleChange}
-          text="Anchor Lockinhalf"
+          text="Anchor Lockinhalf (YYYY-MM-DD)"
           name="anchor_lockin_half"
         />
         <Input
           value={String(props.data.anchor_lockin_rest)}
           function={handleChange}
-          text="Anchor Lockinrest"
+          text="Anchor Lockinrest (YYYY-MM-DD)"
           name="anchor_lockin_rest"
         />
         <Input
@@ -381,7 +381,7 @@ export default function IpoTable(props: {
         <Input
           value={String(props.data.allotment_date)}
           function={handleChange}
-          text="Allotment Date"
+          text="Allotment Date (YYYY-MM-DD)"
           name="allotment_date"
         />
         <Input
