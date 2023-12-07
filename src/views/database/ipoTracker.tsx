@@ -17,10 +17,10 @@ export default function IpoTrackerDatabase() {
     id: "",
     company_name: "",
     sector: "",
-    listing_price: 0,
-    current_price: 0,
-    dayend_price: 0,
-    issue_price: 0,
+    listing_price: '',
+    current_price: '',
+    dayend_price: '',
+    issue_price: '',
     year: "",
   });
 
@@ -97,10 +97,10 @@ export default function IpoTrackerDatabase() {
       id: "",
       company_name: "",
       sector: "",
-      listing_price: 0,
-      current_price: 0,
-      dayend_price: 0,
-      issue_price: 0,
+      listing_price: '',
+      current_price: '',
+      dayend_price: '',
+      issue_price: '',
       year: "",
     });
   };
@@ -280,7 +280,7 @@ export default function IpoTrackerDatabase() {
                 onChange={(e) => {
                   setTracker({
                     ...tracker,
-                    current_price: Number(e.target.value),
+                    current_price: e.target.value,
                   });
                 }}
               />
@@ -301,7 +301,7 @@ export default function IpoTrackerDatabase() {
                 onChange={(e) => {
                   setTracker({
                     ...tracker,
-                    dayend_price: Number(e.target.value),
+                    dayend_price: e.target.value,
                   });
                 }}
               />
@@ -322,7 +322,7 @@ export default function IpoTrackerDatabase() {
                 onChange={(e) => {
                   setTracker({
                     ...tracker,
-                    listing_price: Number(e.target.value),
+                    listing_price: e.target.value,
                   });
                 }}
               />
@@ -343,7 +343,7 @@ export default function IpoTrackerDatabase() {
                 onChange={(e) => {
                   setTracker({
                     ...tracker,
-                    issue_price: Number(e.target.value),
+                    issue_price: e.target.value,
                   });
                 }}
               />
