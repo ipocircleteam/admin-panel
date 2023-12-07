@@ -64,7 +64,7 @@ export default function IpoTrackerDatabase() {
     Reset();
     try {
       const ipoRes = await axios
-        .get(`http://localhost:6969/api/admin/v1/tracker/details?id=${id}`)
+        .get(`https://api.ipocircle.com/api/admin/v1/tracker/details?id=${id}`)
         .catch((error) => {
           toast.dismiss();
           toast.info(error.response.data.msg);
@@ -270,12 +270,11 @@ export default function IpoTrackerDatabase() {
         border-gray-200 overflow-hidden border p-3"
             >
               <label className="mx-1 text-[0.9rem] font-bold ">
-                Current Price (fetched from API, cannot edit) :{" "}
+                Current Price :{" "}
               </label>
               <input
                 type="text"
                 autoComplete="off"
-                disabled
                 className="mx-1 px-1 border border-gray-500 w-[300px] "
                 value={tracker.current_price}
                 onChange={(e) => {
