@@ -14,6 +14,7 @@ import axios from "axios";
 import ValidateIpoDetails from "../../utils/data-validator/addIpodetails";
 
 const API_URL ="https://api.ipocircle.com/"
+const lAPI_URL ="http://localhost:6969/"
 
 export default function UpdateAndDeleteIpo() {
   const [ipo, setIpo] = useState({

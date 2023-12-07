@@ -412,40 +412,112 @@ export default function IpoTable(props: {
           name="time_upf"
         />
         <Input
-          value={props.data.min_retail}
+          value={props.data.min_retail_lots}
           function={handleChange}
-          text="Min Retail"
-          name="min_retail"
+          text="Min Retail Lots"
+          name="min_retail_lots"
         />
         <Input
-          value={props.data.max_retail}
+          value={props.data.max_retail_lots}
           function={handleChange}
-          text="Max Retail"
-          name="max_retail"
+          text="Max Retail Lots"
+          name="max_retail_lots"
         />
         <Input
-          value={props.data.min_shni}
+          value={props.data.min_shni_lots}
           function={handleChange}
-          text="Min Shni"
-          name="min_shni"
+          text="Min Shni Lots"
+          name="min_shni_lots"
         />
         <Input
-          value={props.data.max_shni}
+          value={props.data.max_shni_lots}
           function={handleChange}
-          text="Max Shni"
-          name="max_shni"
+          text="Max Shni Lots"
+          name="max_shni_lots"
         />
         <Input
-          value={props.data.min_bhni}
+          value={props.data.min_bhni_lots}
           function={handleChange}
-          text="Min Bhni"
-          name="min_bhni"
+          text="Min Bhni Lots"
+          name="min_bhni_lots"
         />
         <Input
-          value={props.data.max_bhni}
+          value={props.data.max_bhni_lots}
           function={handleChange}
-          text="Max Bhni"
-          name="max_bhni"
+          text="Max Bhni Lots"
+          name="max_bhni_lots"
+        />
+        <Input
+          value={props.data.min_retail_shares}
+          function={handleChange}
+          text="Min Retail Shares"
+          name="min_retail_shares"
+        />
+        <Input
+          value={props.data.max_retail_shares}
+          function={handleChange}
+          text="Max Retail Shares"
+          name="max_retail_shares"
+        />
+        <Input
+          value={props.data.min_shni_shares}
+          function={handleChange}
+          text="Min Shni Shares"
+          name="min_shni_shares"
+        />
+        <Input
+          value={props.data.max_shni_shares}
+          function={handleChange}
+          text="Max Shni Shares"
+          name="max_shni_shares"
+        />
+        <Input
+          value={props.data.min_bhni_shares}
+          function={handleChange}
+          text="Min Bhni Shares"
+          name="min_bhni_shares"
+        />
+        <Input
+          value={props.data.max_bhni_shares}
+          function={handleChange}
+          text="Max Bhni Shares"
+          name="max_bhni_shares"
+        />
+        <Input
+          value={props.data.min_retail_price}
+          function={handleChange}
+          text="Min Retail Price"
+          name="min_retail_price"
+        />
+        <Input
+          value={props.data.max_retail_price}
+          function={handleChange}
+          text="Max Retail Price"
+          name="max_retail_price"
+        />
+        <Input
+          value={props.data.min_shni_price}
+          function={handleChange}
+          text="Min Shni Price"
+          name="min_shni_price"
+        />
+        <Input
+          value={props.data.max_shni_price}
+          function={handleChange}
+          text="Max Shni Price"
+          name="max_shni_price"
+        />
+        <Input
+          value={props.data.min_bhni_price}
+          function={handleChange}
+          text="Min Bhni Price"
+          name="min_bhni_price"
+        />
+        <Input
+          value={props.data.max_bhni_price}
+          function={handleChange}
+          text="Max Bhni Price"
+          name="max_bhni_price"
         />
         <Input
           value={props.data.qib}
