@@ -61,7 +61,7 @@ export default function IpoTable(props: {
           value={props.data.face_value}
           function={handleChange}
           text="Face Value"
-          name="facevalue"
+          name="face_value"
         />
         <Input
           value={props.data.min_price}
@@ -103,13 +103,13 @@ export default function IpoTable(props: {
           value={props.data.gen_holding_pre}
           function={handleChange}
           text="Gen Holding Pre Issue"
-          name="gen_holding_pre_issue"
+          name="gen_holding_pre"
         />
         <Input
           value={props.data.gen_holding_post}
           function={handleChange}
           text="Gen Holding Post Issue"
-          name="gen_holding_post_issue"
+          name="gen_holding_post"
         />
         <Input
           value={String(props.data.opening_date)}
@@ -220,13 +220,13 @@ export default function IpoTable(props: {
           name="bse_code"
         />
         <Input
-          value={props.data.nse_url}
+          value={props.data.bse_url}
           function={handleChange}
           text="BSE URL"
           name="bse_url"
         />
         <Input
-          value={props.data.bse_code}
+          value={props.data.nse_code}
           function={handleChange}
           text="NSE Script Code"
           name="nse_code"
@@ -307,7 +307,7 @@ export default function IpoTable(props: {
           value={props.data.registrar_website}
           function={handleChange}
           text="Registrar Website"
-          name="registrae_website"
+          name="registrar_website"
         />
         <Input
           value={props.data.registrar_name}

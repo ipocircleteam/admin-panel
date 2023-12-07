@@ -13,6 +13,8 @@ import axios from "axios";
 
 import ValidateIpoDetails from "../../utils/data-validator/addIpodetails";
 
+const API_URL ="https://api.ipocircle.com/"
+
 export default function UpdateAndDeleteIpo() {
   const [ipo, setIpo] = useState({
     ipodetails: initialIpoData,
@@ -59,7 +61,7 @@ export default function UpdateAndDeleteIpo() {
     Reset();
     try {
       const ipoRes = await axios
-        .get(`https://api.ipocircle.com/api/admin/v1/ipo/details?ipoId=${id}`)
+        .get(`${API_URL}api/admin/v1/ipo/details?ipoId=${id}`)
         .catch((error) => {
           console.log(error);
           toast.dismiss();
@@ -100,7 +102,7 @@ export default function UpdateAndDeleteIpo() {
     toast.loading("Fetching IPO List...");
     try {
       const segData = await axios.get(
-        `https://api.ipocircle.com/api/v1/ipo/ipolist?series=&segregated=true`
+        `${API_URL}api/v1/ipo/ipolist?series=&segregated=true`
       );
 
       toast.dismiss();
@@ -130,7 +132,7 @@ export default function UpdateAndDeleteIpo() {
       companyFinance: activeIpo.companyFinances,
     };
     await axios
-      .patch(`https://api.ipocircle.com/api/admin/v1/ipo/update`, body)
+      .patch(`${API_URL}api/admin/v1/ipo/update`, body)
       .then((res) => {
         toast.dismiss();
         toast.success("Data updated successfully");
@@ -154,7 +156,7 @@ export default function UpdateAndDeleteIpo() {
     toast.loading("Wait, deleting ipo...");
     await axios
       .delete(
-        `https://api.ipocircle.com/api/admin/v1/ipo/delete?id=${ipo.ipodetails.id}`
+        `${API_URL}api/admin/v1/ipo/delete?id=${ipo.ipodetails.id}`
       )
       .then((res) => {
         toast.dismiss();

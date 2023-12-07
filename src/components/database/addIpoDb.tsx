@@ -8,6 +8,9 @@ import { toast } from "react-toastify";
 import axios from "axios";
 import ValidateIpoDetails from "../../utils/data-validator/addIpodetails";
 
+const API_URL = "https://api.ipocircle.com/"
+const lAPI_URL ="http://localhost:6969/"
+
 export default function AddIpo() {
   const [ipo, setIpo] = useState({
     ipodetails: initialIpoData,
@@ -28,7 +31,7 @@ export default function AddIpo() {
 
 
     await axios
-      .post(`https://api.ipocircle.com/api/admin/v1/ipo/create`, body)
+      .post(`${API_URL}api/admin/v1/ipo/create`, body)
       .then((res) => {
         toast.dismiss();
         toast.success("Data created successfully");
