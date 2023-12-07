@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from "react";
 
-import { CompanyFinanceType, IpoDetailsType, IpolistType } from "../../types";
+import {
+  CompanyFinanceType,
+  IpoDetailsType,
+  IpolistType,
+} from "../../utils/types";
 import { initialCompanyFinance, initialIpoData } from "../../data/ipoData";
 
 import CompanyFinances from "../tabpanel/ipodetails/company-finances";

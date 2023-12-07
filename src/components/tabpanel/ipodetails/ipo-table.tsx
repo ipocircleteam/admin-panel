@@ -1,5 +1,5 @@
 import React from "react";
-import { IpoDetailsType } from "../../../types";
+import { IpoDetailsType } from "../../../utils/types";
 import Input from "./input-field";
 
 export default function IpoTable(props: {

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import { IpolistType } from "../../types";
+import { IpolistType } from "../../utils/types";
 import { initialCompanyFinance, initialIpoData } from "../../data/ipoData";
 
 import DatabaseNavigation from "../../components/database/navigation";

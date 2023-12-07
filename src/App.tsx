@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import "./globals.css";
 import Loader from "./components/Loader/loader";
-import { UserReducerType } from "./types";
+import { UserReducerType } from "./utils/types";
 import DataEntry from "./views/database/data-base";
 import Admin from "./views/admin";
 import Header from "./components/header/header";
