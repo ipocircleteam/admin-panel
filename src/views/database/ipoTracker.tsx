@@ -336,7 +336,7 @@ export default function IpoTrackerDatabase() {
                 Issue Price :{" "}
               </label>
               <input
-                type="number"
+                type="text"
                 autoComplete="off"
                 className="mx-1 px-1 border border-gray-300 w-[300px] "
                 value={tracker.issue_price}
