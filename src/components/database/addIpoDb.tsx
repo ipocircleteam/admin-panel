@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import IpoTable from "../tabpanel/ipodetails/ipo-table";
-import { CompanyFinanceType, IpoDetailsType } from "../../types";
+import { CompanyFinanceType, IpoDetailsType } from "../../utils/types";
 import { initialCompanyFinance, initialIpoData } from "../../data/ipoData";
 import CompanyFinances from "../tabpanel/ipodetails/company-finances";
 import DatabaseNavigation from "./navigation";
@@ -31,7 +31,7 @@ export default function AddIpo() {
 
 
     await axios
-      .post(`${API_URL}api/admin/v1/ipo/create`, body)
+      .post(`${lAPI_URL}api/admin/v1/ipo/create`, body)
       .then((res) => {
         toast.dismiss();
         toast.success("Data created successfully");

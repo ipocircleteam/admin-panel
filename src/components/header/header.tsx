@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { LogoIcon } from "../../assets";
-import { UserReducerType } from "../../types";
+import { UserReducerType } from "../../utils/types";
 import { signout } from "../../reducers/user-reducer";
 
 export default function Header() {

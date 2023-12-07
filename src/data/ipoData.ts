@@ -2,7 +2,7 @@ import {
   CompanyFinanceType,
   IpoDetailsType,
   ReviewsType,
-} from "../types";
+} from "../utils/types";
 
 export const initialIpoData: IpoDetailsType = {
   id: "",

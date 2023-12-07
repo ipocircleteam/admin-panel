@@ -1,5 +1,5 @@
 import React from "react";
-import { CompanyFinanceType } from "../../../types";
+import { CompanyFinanceType } from "../../../utils/types";
 import Input from "./input-field";
 
 export default function CompanyFinances(props: {

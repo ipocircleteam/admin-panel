@@ -1,5 +1,5 @@
 import React from "react";
-import { IpolistType } from "../../../types";
+import { IpolistType } from "../../../utils/types";
 
 export default function IpoList(props: {
   data: IpolistType[] | undefined;
