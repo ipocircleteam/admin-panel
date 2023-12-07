@@ -10,6 +10,7 @@ import { toast } from "react-toastify";
 import axios from "axios";
 
 import ValidateIpoDetails from "../../utils/data-validator/addIpodetails";
+import { Sectors } from "../../data/sectorData";
 
 export default function IpoTrackerDatabase() {
   const [tracker, setTracker] = useState({
@@ -63,18 +64,25 @@ export default function IpoTrackerDatabase() {
     Reset();
     try {
       const ipoRes = await axios
-        .get(`https://api.ipocircle.com/api/admin/v1/tracker/details?id=${id}`)
+        .get(`http://localhost:6969/api/admin/v1/tracker/details?id=${id}`)
         .catch((error) => {
           toast.dismiss();
           toast.info(error.response.data.msg);
         });
-        if (!ipoRes?.data.success) {
-          toast.dismiss()
-        toast.error("didn't received data");
-        return;
-      }
-      const resdata = ipoRes?.data.data;
-      setTracker(resdata);
+       console.log(ipoRes);
+       
+      const resdata = ipoRes?.data.data[0];
+      
+      setTracker({
+        id: resdata.id,
+        issue_price: resdata.issue_price,
+        current_price: resdata.current_price,
+        listing_price: resdata.listing_price,
+        dayend_price: resdata.dayend_price,
+        year: resdata.year,
+        sector: resdata.sector,
+        company_name: resdata.company_name
+      });
       toast.dismiss();
       toast.success("Details fetched");
     } catch (error: any) {
@@ -125,6 +133,10 @@ export default function IpoTrackerDatabase() {
   }
 
   const modify = async () => {
+    if (tracker.sector === 'Select sector') {
+      toast.error("Please select sector !")
+      return
+    }
     toast.loading("Wait, modifying tracker details...");
 
     await axios
@@ -198,6 +210,8 @@ export default function IpoTrackerDatabase() {
             <IpoList
               data={viewList}
               populateData={(id) => {
+                console.log(id);
+                
                 getTrackerFromId(id);
               }}
             />
@@ -242,10 +256,12 @@ export default function IpoTrackerDatabase() {
                 value={tracker.sector}
                 className="mx-1 px-1 border border-gray-300 w-[300px] "
               >
-                <option>Technology</option>
-                <option>Finance</option>
-                <option>Education</option>
-                <option>Hospitality</option>
+                <option>Select here</option>
+                {Sectors.map((item) => {
+                  return (
+                    <option className="bg-white border h-[50px]" key={item}>{ item }</option>
+                  )
+                })}
               </select>
             </div>
 
@@ -254,12 +270,13 @@ export default function IpoTrackerDatabase() {
         border-gray-200 overflow-hidden border p-3"
             >
               <label className="mx-1 text-[0.9rem] font-bold ">
-                Current Price :{" "}
+                Current Price (fetched from API, cannot edit) :{" "}
               </label>
               <input
                 type="text"
                 autoComplete="off"
-                className="mx-1 px-1 border border-gray-300 w-[300px] "
+                disabled
+                className="mx-1 px-1 border border-gray-500 w-[300px] "
                 value={tracker.current_price}
                 onChange={(e) => {
                   setTracker({
