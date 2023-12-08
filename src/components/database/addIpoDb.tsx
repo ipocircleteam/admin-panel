@@ -31,7 +31,7 @@ export default function AddIpo() {
 
 
     await axios
-      .post(`${lAPI_URL}api/admin/v1/ipo/create`, body)
+      .post(`${API_URL}api/admin/v1/ipo/create`, body)
       .then((res) => {
         toast.dismiss();
         toast.success("Data created successfully");
